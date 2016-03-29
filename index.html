@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    	<meta charset="UTF-8">
+    	<title>DealTop Testing</title>
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>           	
+    </head>
+    <body>    
+    	<div class="row">   
+    		<div class="col-sm-6 col-sm-offset-3"> 	
+			<h3>Generate Serial Numbers for Goat & Sheep</h3>
+			<form role="form" id="generateForm">
+				<div class="form-group">
+					<div class="col-sm-10">            			
+            			<button type="submit" id="form-submit" class="btn btn-primary btn-lg">Generate</button>
+            			<hr>            			
+            			<div id="msgSubmit" class="h4 text-left text-danger hidden"></div>
+        			</div>	
+				</div>							
+			</form>					
+			</div>
+    	</div>    	
+		<script>					
+			$("#generateForm").submit(function(event){		    	
+		    	event.preventDefault(); // stop form submitting
+
+		    	$.ajax({
+			        type: "POST",
+			        url: "app/main.php",
+			        data: "generate=true",
+			        success : function(msg){
+		    			$("#msgSubmit").removeClass("hidden").html(msg);
+			        }
+			    });
+		    	
+			});		
+		</script>
+    </body>    
+</html>
